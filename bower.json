@@ -1,0 +1,8 @@
+{
+  "name": "angular-oniyi-configurator",
+  "version": "0.0.0",
+  "main": "./angular-oniyi-configurator.js",
+  "dependencies": {
+    "oniyi.utils": "^0.0.1"
+  }
+}
