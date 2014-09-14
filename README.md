@@ -172,4 +172,4 @@ angular
     .config(function(configServiceProvider) {
         configServiceProvider.setComponentNamesSeparator('+');
     })
-``
+```
