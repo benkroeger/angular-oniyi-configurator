@@ -34,6 +34,7 @@
       };
 
       this.setEnvironment = function(value) {
+        _setConfigProperty('loadEnvConfig', true);
         return _setConfigProperty('environment', value);
       };
 
@@ -42,6 +43,7 @@
       };
 
       this.useHostnameAsEnvironment = function() {
+        _setConfigProperty('loadEnvConfig', true);
         return _setConfigProperty('useHostnameAsEnvironment', true);
       };
 
