@@ -14,7 +14,7 @@ $ bower install angular-oniyi-configurator
 # Usage
 
 To load a component's configuration from within e.g. a factory, do the following:
-
+```javascript
     angular
         .module('myApp', [
             'oniyi.configurator' // injecting this module into your applications
@@ -46,6 +46,7 @@ To load a component's configuration from within e.g. a factory, do the following
                 something: loadSomething
             };
         })
+```
 
 The code above will load a JSON formatted text file from `configurations/myApp.json` and another one from `configurations/env/development/myApp.json`, parse both into javaScript objects, merge them and provide the result as parameter in a deferred object's success functions.
 Properties in environment specific configuration files will superseed properties with the same name / path from the general configuration file (`configurations/myApp.json`).
@@ -59,14 +60,13 @@ You can also request for multiple component's configurations in one shot:
         $log.info(config.componentTwo.bar);
     })
 
----
 
 # configuration options
 
 ### setRootPath
 Define the root path to the folder holding your configuration files
 
-**defaults to: ** `configurations/`
+**defaults to:** `configurations/`
 
     angular
         .module('myApp', [
@@ -80,7 +80,7 @@ Define the root path to the folder holding your configuration files
 Define the path to the folder holding your environment specific configuration files.
 This folder has to be a sub-folder of `rootPath`.
 
-**defaults to: ** `env/`
+**defaults to:** `env/`
 
     angular
         .module('myApp', [
@@ -95,7 +95,7 @@ will point to `/configurations/environments/` on your webserver
 ### setFilePostFix
 Use this provider function to change the filename extension for configuration files.
 
-**defaults to: ** `.json`
+**defaults to:** `.json`
 
     angular
         .module('myApp', [
@@ -111,7 +111,7 @@ If you don't want to load any environment specific configuration, use `disableEn
 If you require to have hostname specific configurations (use the location's host portion as environment value), activate that behavior by calling `useHostnameAsEnvironment()` on this provider.
 If you call this function after you called `disableEnvironmentConfig()`, the loading of environment configurations will be enabled again.
 
-**defaults to: ** `.json`
+**defaults to:** `.json`
 
     angular
         .module('myApp', [
@@ -150,7 +150,7 @@ You MUST either use `setEnvironment('<<yourEnvironment>>')`, `disableEnvironment
 ### setComponentNameSeparator
 Use this provider to change the componentNameSeparator. This separator is used to split a string provided as argument to `configService.get()` in case you want to receive multiple component configurations with one single call to this module.
 
-**defaults to: ** `,`
+**defaults to:** `,`
 
     angular
         .module('myApp', [
