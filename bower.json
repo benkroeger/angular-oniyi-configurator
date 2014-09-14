@@ -24,6 +24,6 @@
   ],
   "main": "./angular-oniyi-configurator.js",
   "dependencies": {
-    "oniyi.utils": "^0.0.1"
+    "oniyi-utils": "^0.0.1"
   }
 }
