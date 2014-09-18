@@ -1,6 +1,6 @@
 {
   "name": "angular-oniyi-configurator",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/benkroeger/angular-oniyi-configurator",
   "description": "a configuration module for angular projects. It helps loading configuration files from the server and extend them with environment specific config properties",
   "keywords": [
@@ -11,9 +11,10 @@
     "helper",
     "environment"
   ],
-  "authors": [
-    "Benjamin Kroeger"
-  ],
+  "authors": [{
+    "name": "Benjamin Kroeger",
+    "email": "benjamin.kroeger@gmail.com"
+  }],
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -24,6 +25,10 @@
   ],
   "main": "./angular-oniyi-configurator.js",
   "dependencies": {
-    "oniyi-utils": "^0.0.1"
-  }
+    "oniyi-utils": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/benkroeger/angular-oniyi-configurator.git"
+  },
 }
