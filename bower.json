@@ -1,6 +1,6 @@
 {
   "name": "angular-oniyi-configurator",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "homepage": "https://github.com/benkroeger/angular-oniyi-configurator",
   "description": "a configuration module for angular projects. It helps loading configuration files from the server and extend them with environment specific config properties",
   "keywords": [
