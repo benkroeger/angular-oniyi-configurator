@@ -1,5 +1,21 @@
-(function(utils) {
+(function() {
   'use strict';
+
+  function merge(dst) {
+    angular.forEach(arguments, function(obj) {
+      if (obj !== dst) {
+        angular.forEach(obj, function(value, key) {
+          if (dst[key] && dst[key].constructor && dst[key].constructor === Object) {
+            extendDeep(dst[key], value);
+          } else {
+            dst[key] = value;
+          }
+        });
+      }
+    });
+    return dst;
+  }
+
   angular.module('oniyi.configurator', [])
     .provider('configService', function configurationServiceProvider() {
       var config = {
@@ -59,13 +75,13 @@
             componentPromises[componentName] = deferred.promise;
             $http.get(config.rootPath + componentName + config.filePostFix)
               .success(function(mainConfig) {
-                utils.extend(true, configCatalog[componentName], mainConfig);
+                merge(configCatalog[componentName], mainConfig);
                 if (config.loadEnvConfig) {
                   var env = (config.useHostnameAsEnvironment) ? $location.host() : config.environment;
                   if (angular.isString(env)) {
                     $http.get(config.rootPath + config.envPath + env + '/' + componentName + config.filePostFix)
                       .success(function(envConfig) {
-                        utils.extend(true, configCatalog[componentName], envConfig);
+                        merge(configCatalog[componentName], envConfig);
                         deferred.resolve(configCatalog[componentName]);
                       })
                       .error(function(data, status) {
@@ -101,10 +117,11 @@
             componentNames = componentNames.split(config.componentNamesSeparator);
           }
           if (angular.isArray(componentNames)) {
+            var name;
             if (componentNames.length > 1) {
               var promises = {};
               for (var i = 0; i < componentNames.length; i++) {
-                var name = componentNames[i].trim();
+                name = componentNames[i].trim();
                 promises[name] = (angular.isUndefined(componentPromises[name])) ? _loadConfiguration(name) : componentPromises[name];
               }
               $q.all(promises).then(function(componentConfigs) {
@@ -114,7 +131,7 @@
                 deferred.reject('at least one of the requested config files was not loaded successfully');
               });
             } else {
-              var name = componentNames[0].trim();
+              name = componentNames[0].trim();
               deferred.resolve((angular.isUndefined(componentPromises[name])) ? _loadConfiguration(name) : componentPromises[name]);
             }
           } else {
@@ -133,4 +150,4 @@
         };
       };
     });
-})(oniyi.utils);
+})();
